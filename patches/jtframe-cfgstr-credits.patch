@@ -1,0 +1,14 @@
+* Add our names to version string.
+
+diff --git a/target/mister/cfgstr b/target/mister/cfgstr
+index 4771197..c1f6720 100644
+--- a/target/mister/cfgstr
++++ b/target/mister/cfgstr
+@@ -37,4 +39,4 @@ P1oEF,Scale,Normal,V-Integer,Narrower HV-Integer,Wider HV-Integer;
+ {{ if (.JTFRAME_CREDITS) and not (.BETA) }} OC,Show credits in pause,On,Off; {{ end }}
+ R0,Reset;
+ {{ with .CORE_KEYMAP }} {{ . }} {{ end }}
+-V,v{{ .COMMIT }};
+\ No newline at end of file
++V, {{ .VERSION_NAME }} (v. {{ .COMMIT }})  by LMN-san oscherler Raki;
+\ No newline at end of file

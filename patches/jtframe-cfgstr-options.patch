@@ -1,0 +1,18 @@
+* Allow disabling of “CRT H offset” and “CRT V offset” in OSD using JTFRAME_CRT_OFFSET_DISABLE macro;
+* Allow restoring “Reset” at the bottom of OSD when JTFRAME_MRA_DIP is defined, using JTFRAME_RESET_AT_BOTTOM.
+
+diff --git a/target/mister/cfgstr b/target/mister/cfgstr
+index 4771197..b16a231 100644
+--- a/target/mister/cfgstr
++++ b/target/mister/cfgstr
+@@ -4,8 +4,10 @@ J{{.CORENAME}};;
+ {{ if .JTFRAME_CHEAT }}             CHEAT;                    {{ end }}
+     P1,Video;
+ {{ if .JTFRAME_OSD60HZ }}           P1OJ,Force 60Hz, Off, On; {{ end }}
++{{ if not .JTFRAME_CRT_OFFSET_DISABLE }}
+     P1oLO,CRT H offset,0,+1,+2,+3,+4,+5,+6,+7,-8,-7,-6,-5,-4,-3,-2,-1;
+     P1oPS,CRT V offset,0,+1,+2,+3,+4,+5,+6,+7,-8,-7,-6,-5,-4,-3,-2,-1;
++{{ end }}
+     P1oG,CRT scale enable,Off,On;
+     H2P1oHK,CRT scale factor,0,+1,+2,+3,+4,+5,+6,+7,-8,-7,-6,-5,-4,-3,-2,-1;
+ P1{{ .SEPARATOR }}

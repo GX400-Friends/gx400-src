@@ -1,0 +1,24 @@
+Allow jtfiles.go to find game.yaml in /hdl, if there are no core folders.
+
+diff --git a/bin/jtfiles.go b/bin/jtfiles.go
+index a36f9ad..9f7049d 100644
+--- a/bin/jtfiles.go
++++ b/bin/jtfiles.go
+@@ -4,6 +4,7 @@ import (
+ 	"fmt"
+ 	"log"
+ 	"os"
++	"errors"
+ 	"strings"
+ 	"flag"
+ 	"sort"
+@@ -82,6 +83,9 @@ func get_filename( args Args ) string {
+ 			log.Fatal("JTFILES: environment variable CORES is not defined")
+ 		}
+ 		fname = cores + "/" + args.Corename + "/hdl/game.yaml"
++		if _, err := os.Stat(fname); errors.Is(err, os.ErrNotExist) {
++			fname = cores + "/hdl/game.yaml"
++		}
+ 	} else {
+ 		fname=args.Parse
+ 	}

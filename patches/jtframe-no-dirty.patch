@@ -1,0 +1,15 @@
+Don’t add -dirty suffix to version string.
+
+diff --git a/bin/jtcore b/bin/jtcore
+index e9df881b..7715932e 100755
+--- a/bin/jtcore
++++ b/bin/jtcore
+@@ -257,7 +257,7 @@ function no_v {
+ }
+ 
+ if is_dirty; then
+-    PRJCOMMIT="$(git rev-parse --short HEAD)-dirty"
++    PRJCOMMIT="$(git rev-parse --short HEAD)"
+ else
+     PRJCOMMIT=`version_ok.sh`
+     if [[ $? != 0 && $GIT = TRUE ]]; then

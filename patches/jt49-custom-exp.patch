@@ -1,0 +1,17 @@
+diff --git a/hdl/jt49.v b/hdl/jt49.v
+index ee6d812..b4da370 100644
+--- a/hdl/jt49.v
++++ b/hdl/jt49.v
+@@ -139,7 +139,11 @@ jt49_eg u_env(
+ reg  [4:0] logA, logB, logC, log;
+ wire [7:0] lin;
+ 
+-jt49_exp u_exp(
++`ifndef JT49_EXP
++    `define JT49_EXP jt49_exp
++`endif
++
++`JT49_EXP u_exp(
+     .clk    ( clk  ),
+     .comp   ( comp ),
+     .din    ( log  ),

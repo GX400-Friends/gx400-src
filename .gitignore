@@ -1,0 +1,10 @@
+*.hex
+*.jpg
+*.raw
+*.rom
+
+/release
+/log
+
+/cpp/resnet_Darwin
+/cpp/resnet_Linux
